@@ -4,12 +4,14 @@
  */
 
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "@tanstack/react-router";
 import { Loader2, Lock, Shield, TriangleAlert } from "lucide-react";
 import { motion } from "motion/react";
 import { useAuth } from "../features/auth/useAuth";
 
 export default function AdminLoginPage() {
   const { login, loginStatus } = useAuth();
+  const navigate = useNavigate();
   const isLoggingIn = loginStatus === "logging-in";
 
   return (
@@ -20,7 +22,6 @@ export default function AdminLoginPage() {
           "linear-gradient(135deg, oklch(0.12 0.025 240) 0%, oklch(0.16 0.03 250) 50%, oklch(0.14 0.02 230) 100%)",
       }}
     >
-      {/* Decorative background pattern */}
       <div className="absolute inset-0 pointer-events-none">
         <div
           className="absolute inset-0 opacity-[0.04]"
@@ -45,7 +46,6 @@ export default function AdminLoginPage() {
         />
       </div>
 
-      {/* Logo/Brand */}
       <motion.div
         initial={{ opacity: 0, y: -16 }}
         animate={{ opacity: 1, y: 0 }}
@@ -79,7 +79,6 @@ export default function AdminLoginPage() {
         </div>
       </motion.div>
 
-      {/* Card */}
       <motion.div
         initial={{ opacity: 0, y: 24, scale: 0.97 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -95,7 +94,6 @@ export default function AdminLoginPage() {
               "0 24px 60px oklch(0.05 0.02 240 / 0.6), 0 4px 12px oklch(0.05 0.02 240 / 0.4)",
           }}
         >
-          {/* Icon + heading */}
           <div className="flex flex-col items-center text-center mb-8">
             <div
               className="w-16 h-16 rounded-2xl flex items-center justify-center mb-5"
@@ -120,7 +118,6 @@ export default function AdminLoginPage() {
             </p>
           </div>
 
-          {/* Warning notice */}
           <div
             className="flex items-start gap-3 rounded-lg p-4 mb-8"
             style={{
@@ -137,11 +134,10 @@ export default function AdminLoginPage() {
               style={{ color: "oklch(0.7 0.06 80)" }}
             >
               This portal is restricted to system administrators. Unauthorized
-              access attempts are logged and may result in legal consequences.
+              access attempts are logged.
             </p>
           </div>
 
-          {/* Lock icon row */}
           <div className="flex items-center gap-2 mb-6">
             <div
               className="flex-1 h-px"
@@ -157,8 +153,8 @@ export default function AdminLoginPage() {
             />
           </div>
 
-          {/* Sign in button */}
           <Button
+            type="button"
             size="lg"
             data-ocid="admin-login.submit_button"
             onClick={login}
@@ -195,25 +191,28 @@ export default function AdminLoginPage() {
             </div>
           )}
 
-          {/* Back to site */}
           <p
             className="text-center text-xs mt-6"
             style={{ color: "oklch(0.4 0.012 240)" }}
           >
             Not an administrator?{" "}
-            <a
-              href="/user-login"
+            <button
+              type="button"
+              onClick={() => navigate({ to: "/user-login" })}
               data-ocid="admin-login.link"
-              className="underline underline-offset-2 transition-colors"
-              style={{ color: "oklch(0.58 0.06 240)" }}
+              className="underline underline-offset-2 transition-colors cursor-pointer"
+              style={{
+                color: "oklch(0.58 0.06 240)",
+                background: "none",
+                border: "none",
+              }}
             >
               User / Donor Portal →
-            </a>
+            </button>
           </p>
         </div>
       </motion.div>
 
-      {/* Footer attribution */}
       <motion.p
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

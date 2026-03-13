@@ -4,24 +4,24 @@
  */
 
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "@tanstack/react-router";
 import { Droplet, Heart, Loader2 } from "lucide-react";
 import { motion } from "motion/react";
 import { useAuth } from "../features/auth/useAuth";
 
 export default function UserLoginPage() {
   const { login, loginStatus } = useAuth();
+  const navigate = useNavigate();
   const isLoggingIn = loginStatus === "logging-in";
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-background relative overflow-hidden">
-      {/* Decorative background blobs */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-[-120px] right-[-80px] w-[380px] h-[380px] rounded-full bg-primary/5" />
         <div className="absolute bottom-[-80px] left-[-60px] w-[280px] h-[280px] rounded-full bg-primary/4" />
         <div className="absolute top-1/2 left-1/4 w-[180px] h-[180px] rounded-full bg-accent/10 -translate-y-1/2" />
       </div>
 
-      {/* Logo */}
       <motion.div
         initial={{ opacity: 0, y: -16 }}
         animate={{ opacity: 1, y: 0 }}
@@ -41,7 +41,6 @@ export default function UserLoginPage() {
         </div>
       </motion.div>
 
-      {/* Card */}
       <motion.div
         initial={{ opacity: 0, y: 24, scale: 0.97 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -49,7 +48,6 @@ export default function UserLoginPage() {
         className="relative z-10 w-full max-w-md mx-4"
       >
         <div className="bg-white rounded-2xl p-8 md:p-10 shadow-official border border-border">
-          {/* Icon + heading */}
           <div className="flex flex-col items-center text-center mb-8">
             <div className="relative mb-5">
               <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center">
@@ -67,7 +65,6 @@ export default function UserLoginPage() {
             </p>
           </div>
 
-          {/* Info strip */}
           <div className="flex items-center gap-3 rounded-xl bg-primary/5 border border-primary/15 p-4 mb-8">
             <Droplet className="h-4 w-4 text-primary fill-primary/30 flex-shrink-0" />
             <p className="text-xs text-muted-foreground leading-relaxed">
@@ -76,7 +73,6 @@ export default function UserLoginPage() {
             </p>
           </div>
 
-          {/* Divider */}
           <div className="flex items-center gap-3 mb-6">
             <div className="flex-1 h-px bg-border" />
             <span className="text-xs text-muted-foreground">
@@ -85,8 +81,8 @@ export default function UserLoginPage() {
             <div className="flex-1 h-px bg-border" />
           </div>
 
-          {/* Sign in button */}
           <Button
+            type="button"
             size="lg"
             data-ocid="user-login.submit_button"
             onClick={login}
@@ -115,21 +111,21 @@ export default function UserLoginPage() {
             </div>
           )}
 
-          {/* Admin link */}
           <p className="text-center text-xs text-muted-foreground mt-6">
             Are you an administrator?{" "}
-            <a
-              href="/admin-login"
+            <button
+              type="button"
+              onClick={() => navigate({ to: "/admin-login" })}
               data-ocid="user-login.link"
-              className="text-foreground font-medium underline underline-offset-2 hover:text-primary transition-colors"
+              className="text-foreground font-medium underline underline-offset-2 hover:text-primary transition-colors cursor-pointer"
+              style={{ background: "none", border: "none" }}
             >
               Admin Portal →
-            </a>
+            </button>
           </p>
         </div>
       </motion.div>
 
-      {/* Footer */}
       <motion.p
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

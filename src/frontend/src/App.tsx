@@ -4,6 +4,7 @@ import {
   createRootRoute,
   createRoute,
   createRouter,
+  useRouterState,
 } from "@tanstack/react-router";
 import { ThemeProvider } from "next-themes";
 import AppLayout from "./components/AppLayout";
@@ -19,18 +20,27 @@ import RequestBloodPage from "./pages/RequestBloodPage";
 import UserDashboardPage from "./pages/UserDashboardPage";
 import UserLoginPage from "./pages/UserLoginPage";
 
-// Root route component
+// Root route component — renders correct page based on auth state and route
 function RootComponent() {
   const { isAuthenticated } = useAuth();
+  const routerState = useRouterState();
+  const currentPath = routerState.location.pathname;
 
+  // Always allow access to login pages regardless of auth state
+  if (currentPath === "/admin-login") return <AdminLoginPage />;
+  if (currentPath === "/user-login") return <UserLoginPage />;
+  if (currentPath === "/login") return <LandingPage />;
+
+  // If not authenticated, show landing page for all other routes
   if (!isAuthenticated) {
     return <LandingPage />;
   }
 
+  // Authenticated users get the full app layout with nested routes
   return <AppLayout />;
 }
 
-// Root route with layout for authenticated pages
+// Root route
 const rootRoute = createRootRoute({
   component: RootComponent,
 });
