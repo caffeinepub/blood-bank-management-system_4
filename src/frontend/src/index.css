@@ -1,0 +1,138 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Self-hosted fonts */
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/assets/fonts/BricolageGrotesque[opsz,wdth,wght].woff2")
+    format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "General Sans";
+  src: url("/assets/fonts/GeneralSans-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.375rem;
+
+    /* Official medical authority palette — deep crimson + warm white + subtle gold */
+    --background: 0.98 0.004 60;
+    --foreground: 0.18 0.012 30;
+
+    --card: 1 0 0;
+    --card-foreground: 0.18 0.012 30;
+
+    --popover: 1 0 0;
+    --popover-foreground: 0.18 0.012 30;
+
+    /* Deep crimson primary */
+    --primary: 0.42 0.22 25;
+    --primary-foreground: 0.98 0.004 60;
+
+    /* Subtle warm secondary */
+    --secondary: 0.93 0.012 55;
+    --secondary-foreground: 0.28 0.015 30;
+
+    --muted: 0.95 0.008 55;
+    --muted-foreground: 0.48 0.012 35;
+
+    /* Subtle gold accent */
+    --accent: 0.72 0.12 80;
+    --accent-foreground: 0.18 0.012 30;
+
+    --destructive: 0.52 0.22 25;
+    --destructive-foreground: 0.98 0.004 60;
+
+    --border: 0.88 0.008 50;
+    --input: 0.88 0.008 50;
+    --ring: 0.42 0.22 25;
+
+    --chart-1: 0.52 0.22 25;
+    --chart-2: 0.62 0.15 35;
+    --chart-3: 0.72 0.12 80;
+    --chart-4: 0.48 0.18 20;
+    --chart-5: 0.58 0.1 45;
+
+    --sidebar: 0.97 0.006 55;
+    --sidebar-foreground: 0.18 0.012 30;
+    --sidebar-primary: 0.42 0.22 25;
+    --sidebar-primary-foreground: 0.98 0.004 60;
+    --sidebar-accent: 0.93 0.012 55;
+    --sidebar-accent-foreground: 0.28 0.015 30;
+    --sidebar-border: 0.88 0.008 50;
+    --sidebar-ring: 0.42 0.22 25;
+  }
+
+  .dark {
+    --background: 0.14 0.014 30;
+    --foreground: 0.95 0.005 55;
+
+    --card: 0.19 0.014 30;
+    --card-foreground: 0.95 0.005 55;
+
+    --popover: 0.17 0.014 30;
+    --popover-foreground: 0.95 0.005 55;
+
+    --primary: 0.62 0.19 25;
+    --primary-foreground: 0.14 0.014 30;
+
+    --secondary: 0.24 0.014 30;
+    --secondary-foreground: 0.88 0.005 55;
+
+    --muted: 0.24 0.014 30;
+    --muted-foreground: 0.62 0.01 40;
+
+    --accent: 0.62 0.1 80;
+    --accent-foreground: 0.95 0.005 55;
+
+    --destructive: 0.6 0.2 25;
+    --destructive-foreground: 0.14 0.014 30;
+
+    --border: 0.28 0.014 30;
+    --input: 0.28 0.014 30;
+    --ring: 0.62 0.19 25;
+
+    --chart-1: 0.62 0.2 25;
+    --chart-2: 0.7 0.15 35;
+    --chart-3: 0.68 0.1 80;
+    --chart-4: 0.56 0.18 20;
+    --chart-5: 0.64 0.1 45;
+
+    --sidebar: 0.17 0.014 30;
+    --sidebar-foreground: 0.95 0.005 55;
+    --sidebar-primary: 0.62 0.19 25;
+    --sidebar-primary-foreground: 0.14 0.014 30;
+    --sidebar-accent: 0.24 0.014 30;
+    --sidebar-accent-foreground: 0.88 0.005 55;
+    --sidebar-border: 0.28 0.014 30;
+    --sidebar-ring: 0.62 0.19 25;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "General Sans", system-ui, sans-serif;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+  }
+}
